@@ -40,19 +40,36 @@ router.post('/doAction', urlencodedParser,function(req, res) {
 				if(title == undefined || title == "")
 					throw "标签标题不能为空！";
 				if(tid != undefined && tid !=0){
-					var sql = "UPDATE `mn_tags` SET title='"+ title +"' WHERE tid=" + tid;
+					var sql = {
+					  sql: 'UPDATE `mn_tags` SET title=? WHERE tid=?',
+					  values: [title,tid]
+					};
 				}else{
-					var sql = "INSERT INTO `mn_tags` (`title`) VALUES ('"+title+"')";
+					var sql = {
+					  sql: 'INSERT INTO `mn_tags` (`title`) VALUES (?)',
+					  values: [title]
+					};
 				}				
 				break;
 			case "doDel":
 				var tid = req.body.tid;
-				var sql = "DELETE FROM `mn_tags` WHERE tid=" + tid;
+				var sql = {
+				  sql: 'DELETE FROM `mn_tags` WHERE tid=?',
+				  values: [tid]
+				};
 				break;
 			case "doIsAble":
 				var tid = req.body.tid;
 				var is_able = req.body.is_able;
-				var sql = "UPDATE `mn_tags` SET is_able="+ is_able +" WHERE tid=" + tid;
+				if(is_able=="true"){
+					is_able = 1;
+				}else{
+					is_able = 0;
+				}
+				var sql = {
+				  sql: 'UPDATE `mn_tags` SET is_able=? WHERE tid=?',
+				  values: [is_able,tid]
+				};
 				break;
 		}
 		console.log(sql);
