@@ -29,4 +29,6 @@ app.use(express.static(__dirname + '/static'));
 app.set('views', './app/views');
 app.set('view engine','ejs');
 //监听端口，开启服务
-app.listen(app_config.port || 4000);
+app.listen(app_config.port || 4000,function(){
+    console.log("app started.");
+});
