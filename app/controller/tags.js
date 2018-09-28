@@ -1,7 +1,5 @@
 'use strict';
 var express = require('express'),
-	bodyParser = require('body-parser'),
-	urlencodedParser = bodyParser.urlencoded({ extended: false }),
     router = express.Router(),
     model_base_func = require('../model/model_base');
 // 该路由使用的中间件
@@ -13,11 +11,13 @@ router.use(function timeLog(req, res, next) {
 
 */
 router.use(function (req, res, next) {
+  console.log(req.cookies);
   console.log('Time:', Date.now())
   next()
 });
 
 router.get('/', function(req, res) {
+	res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
 	res.render('tags');
 });
 
@@ -25,7 +25,7 @@ router.get('/handle', function(req, res) {
 	res.render('tags_handle')
 });
 
-router.post('/doAction', urlencodedParser,function(req, res) {
+router.post('/doAction',function(req, res) {
 	var result = {
 		"code": 0,
 		"msg": "",
