@@ -3,7 +3,7 @@ var express = require('express'),
     ejs = require('ejs'),
     login = require('./app/controller/login'),
     admin = require('./app/controller/admin'),
-    nodeapp = require('./app/controller/nodeapp'),
+    tags = require('./app/controller/tags'),
     statistics = require('./app/controller/statistics'),
     system = require('./app/controller/system'),
     app_config = require('./config');//配置文件
@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 //外部接口
 app.use('/login', login);
 app.use('/admin', admin);
-app.use('/nodeapp', nodeapp);
+app.use('/tags', tags);
 app.use('/statistics', statistics);
 app.use('/system', system);
 

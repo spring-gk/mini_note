@@ -1,29 +1,15 @@
 {
 	"contentManagement": [
 		{
-			"title": "应用列表",
+			"title": "标签管理",
 			"icon": "icon-text",
-			"href": "/nodeapp",
+			"href": "/tags",
 			"spread": false
 		},
 		{
-			"title": "数据统计",
+			"title": "笔记管理",
 			"icon": "icon-log",
-			"href": "/statistics",
-			"spread": false
-		}
-	],
-	"memberCenter": [
-		{
-			"title": "用户中心",
-			"icon": "&#xe612;",
-			"href": "page/user/userList.html",
-			"spread": false
-		},
-		{
-			"title": "会员等级",
-			"icon": "icon-vip",
-			"href": "page/user/userGrade.html",
+			"href": "/notebook",
 			"spread": false
 		}
 	],
@@ -47,24 +33,6 @@
 			"title": "图标管理",
 			"icon": "&#xe857;",
 			"href": "page/systemSetting/icons.html",
-			"spread": false
-		}
-	],
-	"seraphApi": [
-		{
-			"title": "三级联动模块",
-			"icon": "icon-mokuai",
-			"href": "page/doc/addressDoc.html",
-			"spread": false
-		},{
-			"title": "bodyTab模块",
-			"icon": "icon-mokuai",
-			"href": "page/doc/bodyTabDoc.html",
-			"spread": false
-		},{
-			"title": "三级菜单",
-			"icon": "icon-mokuai",
-			"href": "page/doc/navDoc.html",
 			"spread": false
 		}
 	]

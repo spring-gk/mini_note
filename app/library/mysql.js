@@ -2,7 +2,8 @@
 var mysql = require('mysql'),
     app_config = require('../../config'),
     monitor_func = require('./monitor'),//monitor公用函数
-    genericPool = require("generic-pool");
+    genericPool = require("generic-pool"),
+    init = {};
 
 //创建连接池---begin
 var mysql_factory = {
@@ -39,7 +40,7 @@ mysqlPool.on('factoryDestroyError', function(err){
    console.log("factoryDestroyError:",err);   
 });
 
-var doSqlCmd = function(sql){
+init.doSqlCmdAsync = function(sql){
     return new Promise(function(resolve,reject){
         mysqlPool.acquire().then(function(client){
             client.query(sql,function (err, result) {
@@ -56,7 +57,5 @@ var doSqlCmd = function(sql){
     });
 }
 
-var export_func = {
-        'doSqlCmdAsync': doSqlCmd
-};
-module.exports=export_func;
+
+module.exports=init;
