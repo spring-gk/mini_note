@@ -36,7 +36,7 @@ router.post('/doAction', urlencodedParser,function(req, res) {
 		switch(action_type) {
 			case "doTag":
 				var title = req.body.title;
-				var tid = req.body.tid;
+				var tid = parseInt(req.body.tid);
 				if(title == undefined || title == "")
 					throw "标签标题不能为空！";
 				if(tid != undefined && tid !=0){
@@ -52,14 +52,14 @@ router.post('/doAction', urlencodedParser,function(req, res) {
 				}				
 				break;
 			case "doDel":
-				var tid = req.body.tid;
+				var tid = parseInt(req.body.tid);
 				var sql = {
 				  sql: 'DELETE FROM `mn_tags` WHERE tid=?',
 				  values: [tid]
 				};
 				break;
 			case "doIsAble":
-				var tid = req.body.tid;
+				var tid = parseInt(req.body.tid);
 				var is_able = req.body.is_able;
 				if(is_able=="true"){
 					is_able = 1;
