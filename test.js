@@ -1,3 +1,4 @@
+//https://github.com/summerblue/laravel5-cheatsheet
 /*var mysql_func = require('./app/library/mysql');
 var sql = "select * from node_app";
 mysql_func.doSqlCmdAsync(sql).then(function(res){
