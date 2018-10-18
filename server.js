@@ -4,6 +4,7 @@ var express = require('express'),
     login = require('./app/controller/login'),
     admin = require('./app/controller/admin'),
     tags = require('./app/controller/tags'),
+    notes = require('./app/controller/notes'),
     statistics = require('./app/controller/statistics'),
     system = require('./app/controller/system'),
     cookieParser = require('cookie-parser'),
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use('/login', login);
 app.use('/admin', admin);
 app.use('/tags', tags);
+app.use('/notes', notes);
 app.use('/statistics', statistics);
 app.use('/system', system);
 app.use(express.static(__dirname + '/static'));

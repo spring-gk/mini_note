@@ -9,7 +9,7 @@
 		{
 			"title": "笔记管理",
 			"icon": "icon-log",
-			"href": "/notebook",
+			"href": "/notes",
 			"spread": false
 		}
 	],
