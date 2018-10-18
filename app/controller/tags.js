@@ -1,7 +1,7 @@
 'use strict';
 var express = require('express'),
     router = express.Router(),
-    model_base_func = require('../model/model_base');
+    rbac = require('../library/rbac');
 // 该路由使用的中间件
 /*
 router.use(function timeLog(req, res, next) {
@@ -11,8 +11,8 @@ router.use(function timeLog(req, res, next) {
 
 */
 router.use(function (req, res, next) {
-  console.log(req.cookies);
-  console.log('Time:', Date.now())
+ // console.log(req.cookies);
+  //console.log('Time:', Date.now())
   next()
 });
 
@@ -73,7 +73,7 @@ router.post('/doAction',function(req, res) {
 				break;
 		}
 		console.log(sql);
-		model_base_func.doSqlCmd(sql).then(function(result){
+		rbac.doSqlCmdAsync(sql).then(function(result){
 			result.code = 1;
 			res.send(result);
 		}).catch(function(err){
@@ -99,11 +99,18 @@ router.get('/data',function(req,res){
     if(page == undefined || page == "")
     	page = 1;
     if(page_size == undefined || page_size == "")
-    	page_size = 10;
-	model_base_func.getDataList("mn_tags",page,"*","update_time desc",page_size).then(function(result){
-		data.data = result.data;
-		data.count = result.count;
-		res.send(data);
+    	page_size = 5;
+    rbac.useTable("mn_tags").select("COUNT(1) AS total").get().then(function(result){
+		var count = result[0]['total'];
+		rbac.useTable("mn_tags").select("*").orderBy('tid','desc').limit((page-1)*page_size,page_size).get().then(function(res22){
+			data.count = count;
+			data.data = res22;
+			res.send(data);
+		}).catch(function(err){
+			data.code = 1;
+			data.msg = err;
+			res.send(data);
+		});
 	}).catch(function(err){
 		data.code = 1;
 		data.msg = err;
