@@ -47,7 +47,7 @@ var buildGetSql = function(){
 				}
 			}
 		}
-		if(init.limit_begin != ""){
+		if(init.limit_begin || init.limit_number){
 			sql += " LIMIT " + init.limit_begin;
 			if(init.limit_number){
 				sql += "," + init.limit_number;
@@ -164,7 +164,7 @@ init.useTable = function(tableName){
 	this.where_action = [];
 	this.group = [];
 	this.order = [];
-	this.limit_begin = 0;
+	this.limit_begin = "";
 	this.limit_number = 0;
 	this.update_data = [];
 	this.insert_data = [];

@@ -19,7 +19,7 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
         cols : [[
             {type: "checkbox", fixed:"left", width:50},
             {field: 'tid', title: 'ID', width:60, align:"center"},
-            {field: 'title', title: '标签名称', align:'center'},
+            {field: 'title', title: '笔记名称', align:'center'},
             {field: 'is_able', title: '是否可用', align:'center', templet:function(d){
                 var checked = d.is_able == 1 ? "checked" : "";
                 return '<input type="checkbox" name="is_able" data-id="'+d.tid+'" lay-filter="is_able" lay-skin="switch" lay-text="是|否" '+checked+'>'
@@ -70,7 +70,7 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
     //添加文章
     function addNews(edit){
         var index = layui.layer.open({
-            title : edit ? "编辑标签" :"添加标签",
+            title : edit ? "编辑笔记" :"添加笔记",
             type : 2,
             content : "/notes/handle",
             success : function(layero, index){
@@ -136,7 +136,7 @@ layui.use(['form','layer','laydate','table','laytpl'],function(){
         if(layEvent === 'edit'){ //编辑
             addNews(data);
         } else if(layEvent === 'del'){ //删除
-            layer.confirm('确定删除此标签？',{icon:3, title:'提示信息'},function(index){
+            layer.confirm('确定删除此笔记？',{icon:3, title:'提示信息'},function(index){
                 var index = layer.msg('处理中，请稍候',{icon: 16,time:false,shade:0.8});
                 $.post("/notes/doAction",{tid:data.tid,action_type:"doDel"},function(res){
                     layer.close(index);
